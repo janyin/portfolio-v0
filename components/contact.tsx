@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -10,14 +10,14 @@ import { motion } from "framer-motion"
 import { Github, Linkedin, Mail, MapPin, Phone, Send, Twitter } from "lucide-react"
 
 export default function Contact() {
+  const [email, setEmail] = React.useState("")
+  const [message, setMessage] = React.useState("")
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // send post request to message.liucodes.dev
-    const formData = new FormData(e.target as HTMLFormElement)
     const data = {
-      email: formData.get("email"),
-      message: formData.get("message"),
-      // subject: formData.get("subject"), // Uncomment if you want to include subject
+      email: email,
+      message: message,
     };
 
     fetch("https://message.liucodes.dev", {
@@ -154,6 +154,8 @@ export default function Contact() {
                     <Input
                       type="email"
                       required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="bg-gray-700 border-gray-600 text-white focus:border-blue-500"
                     />
                   </div>
@@ -163,6 +165,8 @@ export default function Contact() {
                     <Textarea
                       required
                       rows={5}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       className="bg-gray-700 border-gray-600 text-white focus:border-blue-500 resize-none"
                     />
                   </div>
