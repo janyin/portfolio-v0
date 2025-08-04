@@ -1,20 +1,21 @@
-"use client"
+"use client";
 
-import React from "react"
+import React from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, MapPin, Phone, Send, Twitter } from "lucide-react"
+import Config from "@/app/config";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
 
 export default function Contact() {
-  const [email, setEmail] = React.useState("")
-  const [message, setMessage] = React.useState("")
+  const [email, setEmail] = React.useState("");
+  const [message, setMessage] = React.useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     const data = {
       email: email,
       message: message,
@@ -29,16 +30,16 @@ export default function Contact() {
     })
       .then((response) => {
         if (response.ok) {
-          alert("Message sent successfully!")
+          alert("Message sent successfully!");
         } else {
-          alert("Failed to send message. Please try again later.")
+          alert("Failed to send message. Please try again later.");
         }
       })
       .catch((error) => {
-        console.error("Error sending message:", error)
-        alert("An error occurred while sending your message.")
+        console.error("Error sending message:", error);
+        alert("An error occurred while sending your message.");
       });
-  }
+  };
 
   return (
     <section id="contact" className="py-20">
@@ -48,19 +49,20 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="mb-4 text-4xl font-bold md:text-5xl">
             <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
               Let's Connect
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Ready to discuss opportunities, collaborations, or just have a tech conversation
+          <p className="mx-auto max-w-2xl text-xl text-gray-300">
+            Ready to discuss opportunities, collaborations, or just have a tech
+            conversation
           </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-2">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -68,70 +70,61 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-white mb-8">Get In Touch</h3>
+            <h3 className="mb-8 text-2xl font-bold text-white">Get In Touch</h3>
 
-            <div className="space-y-6 mb-8">
+            <div className="mb-8 space-y-6">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600">
                   <Mail className="text-white" size={20} />
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold">Email</h4>
-                  <p className="text-gray-300">your.email@example.com</p>
+                  <h4 className="font-semibold text-white">Email</h4>
+                  <p className="text-gray-300">{Config.email}</p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center">
+              {/* <div className="flex items-center space-x-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-teal-600">
                   <Phone className="text-white" size={20} />
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold">Phone</h4>
+                  <h4 className="font-semibold text-white">Phone</h4>
                   <p className="text-gray-300">+1 (555) 123-4567</p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-600">
                   <MapPin className="text-white" size={20} />
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold">Location</h4>
-                  <p className="text-gray-300">San Francisco, CA</p>
+                  <h4 className="font-semibold text-white">Location</h4>
+                  <p className="text-gray-300">Shanghai, China</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div>
-              <h4 className="text-white font-semibold mb-4">Follow Me</h4>
+              <h4 className="mb-4 font-semibold text-white">Follow Me</h4>
               <div className="flex space-x-4">
                 <motion.a
                   whileHover={{ scale: 1.1 }}
-                  href="https://github.com"
+                  href={Config.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 text-gray-400 transition-colors hover:bg-gray-700 hover:text-white"
                 >
                   <Github size={20} />
                 </motion.a>
                 <motion.a
                   whileHover={{ scale: 1.1 }}
-                  href="https://linkedin.com"
+                  href={Config.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 text-gray-400 transition-colors hover:bg-gray-700 hover:text-white"
                 >
                   <Linkedin size={20} />
-                </motion.a>
-                <motion.a
-                  whileHover={{ scale: 1.1 }}
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
-                >
-                  <Twitter size={20} />
                 </motion.a>
               </div>
             </div>
@@ -144,36 +137,42 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-gray-800/50 border-gray-700">
+            <Card className="border-gray-700 bg-gray-800/50">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
+                <h3 className="mb-6 text-2xl font-bold text-white">
+                  Send a Message
+                </h3>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Your Email</label>
+                    <label className="mb-2 block text-sm font-medium text-gray-300">
+                      Your Email
+                    </label>
                     <Input
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="bg-gray-700 border-gray-600 text-white focus:border-blue-500"
+                      className="border-gray-600 bg-gray-700 text-white focus:border-blue-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                    <label className="mb-2 block text-sm font-medium text-gray-300">
+                      Message
+                    </label>
                     <Textarea
                       required
                       rows={5}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className="bg-gray-700 border-gray-600 text-white focus:border-blue-500 resize-none"
+                      className="resize-none border-gray-600 bg-gray-700 text-white focus:border-blue-500"
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700"
                   >
                     <Send size={16} className="mr-2" />
                     Send Message
@@ -190,11 +189,13 @@ export default function Contact() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-center mt-16 pt-8 border-t border-gray-800"
+          className="mt-16 border-t border-gray-800 pt-8 text-center"
         >
-          <p className="text-gray-400">© 2024 Your Name. Built with Next.js and Tailwind CSS.</p>
+          <p className="text-gray-400">
+            © 2025 Liu Jiangdu. All rights reserved.
+          </p>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
