@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Database, ExternalLink, Github, Zap } from "lucide-react";
+import Image from "next/image";
 
 const projects = [
   {
@@ -74,9 +75,10 @@ export default function Projects() {
                   <div
                     className={`${project.featured ? "md:w-1/2" : ""} relative overflow-hidden`}
                   >
-                    <img
+                    <Image
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
+                      fill
                       className="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />

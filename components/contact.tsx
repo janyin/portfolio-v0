@@ -57,7 +57,7 @@ export default function Contact() {
         >
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">
             <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
-              Let's Connect
+              Let&apos;s Connect
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-xl text-gray-300">
