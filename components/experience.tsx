@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Calendar, ChevronRight, MapPin } from "lucide-react";
+import Image from "next/image";
 
 const experiences = [
   {
@@ -33,6 +34,7 @@ const experiences = [
     title: "Honeywell - Software Engineer",
     location: "Shanghai, China",
     period: "Jun 2021 - Aug 2022",
+    companyLogo: "/honeywell-logo.svg",
     description:
       "Led web development for an industrial IoT security platform, working with hardware teams to integrate real-time data visualization and analytics.",
     achievements: [
@@ -87,6 +89,15 @@ export default function Experience() {
             >
               <Card className="border-gray-700 bg-gray-800/50 transition-all duration-300 hover:bg-gray-800/70">
                 <CardContent className="p-8">
+                  {exp.companyLogo && (
+                    <Image
+                      src={exp.companyLogo}
+                      alt={`${exp.title} logo`}
+                      width={150}
+                      height={150}
+                      className="mb-4"
+                    />
+                  )}
                   <div className="mb-4 flex flex-col md:flex-row md:items-start md:justify-between">
                     <div className="mb-4 md:mb-0">
                       <h3 className="mb-2 text-2xl font-bold text-white">

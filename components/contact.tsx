@@ -13,6 +13,8 @@ import { Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
 export default function Contact() {
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [isMessageSent, setIsMessageSent] = React.useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function Contact() {
       email: email,
       message: message,
     };
-
+    setLoading(true);
     fetch("https://message.liucodes.dev", {
       method: "POST",
       headers: {
@@ -30,14 +32,16 @@ export default function Contact() {
     })
       .then((response) => {
         if (response.ok) {
-          alert("Message sent successfully!");
-        } else {
-          alert("Failed to send message. Please try again later.");
+          setIsMessageSent(true);
         }
       })
       .catch((error) => {
         console.error("Error sending message:", error);
-        alert("An error occurred while sending your message.");
+      })
+      .finally(() => {
+        setLoading(false);
+        setEmail("");
+        setMessage("");
       });
   };
 
@@ -138,47 +142,59 @@ export default function Contact() {
             viewport={{ once: true }}
           >
             <Card className="border-gray-700 bg-gray-800/50">
-              <CardContent className="p-8">
-                <h3 className="mb-6 text-2xl font-bold text-white">
-                  Send a Message
-                </h3>
+              {isMessageSent ? (
+                <CardContent className="p-8">
+                  <h3 className="mb-6 text-2xl font-bold text-white">
+                    Message Sent
+                  </h3>
+                  <p className="text-gray-300">
+                    Thank you for your message! I will get back to you soon.
+                  </p>
+                </CardContent>
+              ) : (
+                <CardContent className="p-8">
+                  <h3 className="mb-6 text-2xl font-bold text-white">
+                    Send a Message
+                  </h3>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="mb-2 block text-sm font-medium text-gray-300">
-                      Your Email
-                    </label>
-                    <Input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="border-gray-600 bg-gray-700 text-white focus:border-blue-500"
-                    />
-                  </div>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label className="mb-2 block text-sm font-medium text-gray-300">
+                        Your Email
+                      </label>
+                      <Input
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="border-gray-600 bg-gray-700 text-white focus:border-blue-500"
+                      />
+                    </div>
 
-                  <div>
-                    <label className="mb-2 block text-sm font-medium text-gray-300">
-                      Message
-                    </label>
-                    <Textarea
-                      required
-                      rows={5}
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      className="resize-none border-gray-600 bg-gray-700 text-white focus:border-blue-500"
-                    />
-                  </div>
+                    <div>
+                      <label className="mb-2 block text-sm font-medium text-gray-300">
+                        Message
+                      </label>
+                      <Textarea
+                        required
+                        rows={5}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="resize-none border-gray-600 bg-gray-700 text-white focus:border-blue-500"
+                      />
+                    </div>
 
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700"
-                  >
-                    <Send size={16} className="mr-2" />
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700"
+                    >
+                      <Send size={16} className="mr-2" />
+                      Send Message
+                    </Button>
+                  </form>
+                </CardContent>
+              )}
             </Card>
           </motion.div>
         </div>
@@ -191,9 +207,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="mt-16 border-t border-gray-800 pt-8 text-center"
         >
-          <p className="text-gray-400">
-            © 2025 Liu Jiangdu. All rights reserved.
-          </p>
+          <p className="text-gray-400">© 2025 Jiangdu. All rights reserved.</p>
         </motion.div>
       </div>
     </section>
