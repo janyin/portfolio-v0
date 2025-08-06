@@ -47,7 +47,7 @@ const experiences = [
     technologies: ["TypeScript", "React", "Node.js", "Google Maps API"],
   },
   {
-    title: "Shanghai Aiyong Technology -Frontend Developer",
+    title: "Shanghai Aiyong Technology - Frontend Developer",
     location: "Shanghai, China",
     period: "Apr 2020 - May 2021",
     description:
