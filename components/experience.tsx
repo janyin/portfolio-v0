@@ -12,11 +12,13 @@ const experiences = [
     location: "Shanghai, China",
     period: "Nov 2022 - Mar 2025",
     description:
-      "Developed and maintained GetSupport App for SAP for Me , a global customer support portal serving millions of users worldwide",
+      "Worked on SAP for Me, a web application that provides personalized support and information for SAP customers, enhancing their experience with SAP products and services.",
     achievements: [
-      "Improved application performance by 30% through code optimization",
+      "Delivered a new version of GetSupport App with a modern UI to enhance support experience",
       "Integrated with ServiceNow ITSM, optimizing internal support workflows",
-      "Improved unit test coverage to 90%+ using Sinon.js and QUnit",
+      "Integrated with Adobe Analytics for user behavior tracking",
+      "Integrated with Third-party SAP Experts Platform for real-time support",
+      "Integrated with SAP Business AI for automated support predictions and recommendations",
     ],
     technologies: [
       "SAP UI5",
@@ -40,7 +42,7 @@ const experiences = [
     achievements: [
       "Developed a real-time data visualization dashboard",
       "Integrated with Google Maps API for facility security monitoring",
-      "Implemented automation features, Scheduled Data Downloads, Scheduled Reports, and firmware updates",
+      "Implemented automation features, such as Scheduled Data Downloads, Scheduled Reports, and firmware updates",
     ],
     technologies: ["TypeScript", "React", "Node.js", "Google Maps API"],
   },
