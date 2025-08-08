@@ -37,6 +37,17 @@ const projects = [
     featured: true,
     icon: <Database className="text-blue-400" size={24} />,
   },
+  {
+    title: "NetEase Music Player - Open Source",
+    description:
+      "A web-based music player built with React and TypeScript, featuring a modern UI and support for various audio formats.",
+    image: "/reactmusic.png",
+    technologies: ["React", "Vue", "JavaScript", "TypeScript", "Node.js"],
+    liveUrl: "https://reactmusic.liucodes.dev",
+    githubUrl: "https://github.com/janyin/netease-music-app",
+    featured: true,
+    icon: <Zap className="text-yellow-400" size={24} />,
+  },
 ];
 
 export default function Projects() {
@@ -88,7 +99,10 @@ export default function Projects() {
                   <CardContent
                     className={`p-8 ${project.featured ? "md:w-1/2" : ""}`}
                   >
-                    <h3 className="mb-3 text-2xl font-bold text-white">
+                    <h3
+                      className="mb-3 cursor-pointer text-2xl font-bold text-white transition-colors duration-300 hover:text-blue-400"
+                      onClick={() => window.open(project.liveUrl, "_blank")}
+                    >
                       {project.title}
                     </h3>
                     <p className="mb-6 leading-relaxed text-gray-300">
