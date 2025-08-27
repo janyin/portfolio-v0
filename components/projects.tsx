@@ -4,53 +4,51 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Database, ExternalLink, Github, Zap } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-const projects = [
-  {
-    title: "SAP for Me - Customer Support Portal ",
-    description:
-      "SAP for Me is the personalized central entry point to access SAP products, support, and services.",
-    image: "/sapforme.png",
-    technologies: [
-      "TypeScript",
-      "SAP Fiori",
-      "Node.js",
-      "GraphQL",
-      "SAP Cloud Platform",
-      "OpenUI5",
-    ],
-    liveUrl: "https://support.sap.com/en/index.html",
-    githubUrl: "",
-    featured: true,
-    icon: <Zap className="text-yellow-400" size={24} />,
-  },
-  {
-    title: "Honeywell Safety Suite - Industrial Automation",
-    description:
-      "Honeywell Safety Suite enhances safety and compliance with connected devices and intelligent automation.",
-    image: "/honeywell-safety-suite.png",
-    technologies: ["React", "TypeScript", "Node.js"],
-    liveUrl:
-      "https://automation.honeywell.com/us/en/software/detection-measurement-and-control/safety-suite",
-    githubUrl: "",
-    featured: true,
-    icon: <Database className="text-blue-400" size={24} />,
-  },
-  {
-    title: "NetEase Music Player - Open Source",
-    description:
-      "A web-based music player built with React and TypeScript, featuring a modern UI and support for various audio formats.",
-    image: "/reactmusic.png",
-    technologies: ["React", "Vue", "JavaScript", "TypeScript", "Node.js"],
-    liveUrl: "https://reactmusic.liucodes.dev",
-    githubUrl: "https://github.com/janyin/netease-music-app",
-    featured: true,
-    icon: <Zap className="text-yellow-400" size={24} />,
-  },
-];
-
 export default function Projects() {
+  const t = useTranslations("project");
+  const projects = [
+    {
+      title: t("project1-title"),
+      description: t("project1-description"),
+      image: "/sapforme.png",
+      technologies: [
+        "TypeScript",
+        "SAP Fiori",
+        "Node.js",
+        "GraphQL",
+        "SAP Cloud Platform",
+        "OpenUI5",
+      ],
+      liveUrl: "https://support.sap.com/en/index.html",
+      githubUrl: "",
+      featured: true,
+      icon: <Zap className="text-yellow-400" size={24} />,
+    },
+    {
+      title: t("project2-title"),
+      description: t("project2-description"),
+      image: "/honeywell-safety-suite.png",
+      technologies: ["React", "TypeScript", "Node.js"],
+      liveUrl:
+        "https://automation.honeywell.com/us/en/software/detection-measurement-and-control/safety-suite",
+      githubUrl: "",
+      featured: true,
+      icon: <Database className="text-blue-400" size={24} />,
+    },
+    {
+      title: t("project3-title"),
+      description: t("project3-description"),
+      image: "/reactmusic.png",
+      technologies: ["React", "Vue", "JavaScript", "TypeScript", "Node.js"],
+      liveUrl: "https://reactmusic.liucodes.dev",
+      githubUrl: "https://github.com/janyin/netease-music-app",
+      featured: true,
+      icon: <Zap className="text-yellow-400" size={24} />,
+    },
+  ];
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-6">
@@ -63,7 +61,7 @@ export default function Projects() {
         >
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Featured Projects
+              {t("title")}
             </span>
           </h2>
           {/* <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -135,7 +133,7 @@ export default function Projects() {
                           rel="noopener noreferrer"
                         >
                           <ExternalLink size={16} className="mr-2" />
-                          Live Demo
+                          {t("Live Demo")}
                         </a>
                       </Button>
                       {project.githubUrl && (
@@ -151,7 +149,7 @@ export default function Projects() {
                             rel="noopener noreferrer"
                           >
                             <Github size={16} className="mr-2" />
-                            Code
+                            {t("Code")}
                           </a>
                         </Button>
                       )}

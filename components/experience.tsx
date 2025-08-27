@@ -3,65 +3,64 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Calendar, ChevronRight, MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-const experiences = [
-  {
-    title: "SAP - Web Developer",
-    companyLogo: "/sap-logo.svg",
-    location: "Shanghai, China",
-    period: "Nov 2022 - Mar 2025",
-    description:
-      "Worked on SAP for Me, a web application that provides personalized support and information for SAP customers, enhancing their experience with SAP products and services.",
-    achievements: [
-      "Delivered a new version of GetSupport App with a modern UI to enhance support experience",
-      "Integrated with ServiceNow ITSM, optimizing internal support workflows",
-      "Integrated with Adobe Analytics for user behavior tracking",
-      "Integrated with Third-party SAP Experts Platform for real-time support",
-      "Integrated with SAP Business AI for automated support predictions and recommendations",
-    ],
-    technologies: [
-      "SAP UI5",
-      "JavaScript",
-      "ServiceNow",
-      "Fiori",
-      "OData",
-      "Java",
-    ],
-  },
-  /**
-   * Honeywell Safety Suite is an ecosystem of comprehensive safety applications that enhances safety, productivity, and compliance for plant, remote and emergency response customers by using connected devices, analytics, and workflow automation. It lets you securely manage your gas detection fleet  and monitor worker safety in one place almost anytime and anywhere.
-   */
-  {
-    title: "Honeywell - Software Engineer",
-    location: "Shanghai, China",
-    period: "Jun 2021 - Aug 2022",
-    companyLogo: "/honeywell-logo.svg",
-    description:
-      "Led web development for an industrial IoT security platform, working with hardware teams to integrate real-time data visualization and analytics.",
-    achievements: [
-      "Developed a real-time data visualization dashboard",
-      "Integrated with Google Maps API for facility security monitoring",
-      "Implemented automation features, such as Scheduled Data Downloads, Scheduled Reports, and firmware updates",
-    ],
-    technologies: ["TypeScript", "React", "Node.js", "Google Maps API"],
-  },
-  {
-    title: "Shanghai Aiyong Technology - Frontend Developer",
-    location: "Shanghai, China",
-    period: "Apr 2020 - May 2021",
-    description:
-      "Built and maintained a SaaS backend system for Taobao and Pinduoduo sellers using React and TypeScript, serving 1M+ users.",
-    achievements: [
-      "Developed a multi-tenant SaaS backend system for e-commerce sellers",
-      "Implemented real-time data synchronization with Taro and Ant Design",
-      "Improved user experience with responsive design and performance optimizations",
-    ],
-    technologies: ["Taro", "React", "Vue", "Ant Design"],
-  },
-];
-
 export default function Experience() {
+  const t = useTranslations("experience");
+  const experiences = [
+    {
+      title: t("work1-title"),
+      companyLogo: "/sap-logo.svg",
+      location: t("work1-location"),
+      period: t("work1-period"),
+      description: t("work1-description"),
+      achievements: [
+        t("work1-achievements1"),
+        t("work1-achievements2"),
+        t("work1-achievements3"),
+        t("work1-achievements4"),
+        t("work1-achievements5"),
+      ],
+      technologies: [
+        "SAP UI5",
+        "JavaScript",
+        "ServiceNow",
+        "Fiori",
+        "OData",
+        "Java",
+      ],
+    },
+    /**
+     * Honeywell Safety Suite is an ecosystem of comprehensive safety applications that enhances safety, productivity, and compliance for plant, remote and emergency response customers by using connected devices, analytics, and workflow automation. It lets you securely manage your gas detection fleet  and monitor worker safety in one place almost anytime and anywhere.
+     */
+    {
+      title: t("work2-title"),
+      location: t("work2-location"),
+      period: t("work2-period"),
+      companyLogo: "/honeywell-logo.svg",
+      description: t("work2-description"),
+      achievements: [
+        t("work2-achievements1"),
+        t("work2-achievements2"),
+        t("work2-achievements3"),
+      ],
+      technologies: ["TypeScript", "React", "Node.js", "Google Maps API"],
+    },
+    {
+      title: t("work3-title"),
+      location: t("work3-location"),
+      period: t("work3-period"),
+      description: t("work3-description"),
+      achievements: [
+        t("work3-achievements1"),
+        t("work3-achievements2"),
+        t("work3-achievements3"),
+      ],
+      technologies: ["Taro", "React", "Vue", "Ant Design"],
+    },
+  ];
+
   return (
     <section id="experience" className="bg-gray-900/50 py-20">
       <div className="container mx-auto px-6">
@@ -74,7 +73,7 @@ export default function Experience() {
         >
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Work Experience
+              {t("title")}
             </span>
           </h2>
         </motion.div>
@@ -124,7 +123,7 @@ export default function Experience() {
 
                   <div className="mb-6">
                     <h4 className="mb-3 text-lg font-semibold text-white">
-                      Key Achievements
+                      {t("work-label1")}
                     </h4>
                     <ul className="space-y-2">
                       {exp.achievements.map((achievement, i) => (
@@ -141,7 +140,7 @@ export default function Experience() {
 
                   <div>
                     <h4 className="mb-3 text-lg font-semibold text-white">
-                      Technologies
+                      {t("work-label2")}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech, i) => (
