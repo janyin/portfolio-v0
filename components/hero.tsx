@@ -3,8 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronDown, Code, Globe, Zap } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Hero() {
+  const t = useTranslations("hero");
+
   const scrollToNext = () => {
     const element = document.querySelector("#experience");
     if (element) {
@@ -31,7 +34,7 @@ export default function Hero() {
             className="mb-6 text-5xl font-bold md:text-7xl"
           >
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
-              Full-Stack Web Developer
+              {t("mainTitle")}
             </span>
           </motion.h1>
 
@@ -41,9 +44,9 @@ export default function Hero() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mb-8 text-xl leading-relaxed text-gray-300 md:text-2xl"
           >
-            Focused on delivering enterprise-level software solutions for{" "}
+            {t("description")}{" "}
             <span className="font-semibold text-blue-400">
-              Fortune 500 companies
+              {t("highlight")}
             </span>
           </motion.p>
 
@@ -55,15 +58,15 @@ export default function Hero() {
           >
             <div className="flex items-center space-x-2 text-gray-300">
               <Code className="text-blue-400" size={20} />
-              <span>Modern Web Development</span>
+              <span>{t("label1")}</span>
             </div>
             <div className="flex items-center space-x-2 text-gray-300">
               <Zap className="text-yellow-400" size={20} />
-              <span>Performance Optimization</span>
+              <span>{t("label2")}</span>
             </div>
             <div className="flex items-center space-x-2 text-gray-300">
               <Globe className="text-green-400" size={20} />
-              <span>Enterprise Solutions</span>
+              <span>{t("label3")}</span>
             </div>
           </motion.div>
 
@@ -82,7 +85,7 @@ export default function Hero() {
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              View My Work
+              {t("button1")}
             </Button>
             <Button
               variant="outline"
@@ -94,7 +97,7 @@ export default function Hero() {
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              Get In Touch
+              {t("button2")}
             </Button>
           </motion.div>
         </motion.div>

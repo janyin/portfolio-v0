@@ -12,80 +12,81 @@ import {
   Smartphone,
   Wrench,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-
-const skillCategories = [
-  {
-    title: "Frontend",
-    icon: (active: boolean) => (
-      <Code
-        className={` ${active ? "text-gray-300" : "text-blue-400"}`}
-        size={24}
-      />
-    ),
-    color: "from-blue-400 to-cyan-400",
-    skills: [
-      { name: "TypeScript", level: 95 },
-      { name: "React", level: 90 },
-      { name: "Next.js", level: 85 },
-      { name: "SAP UI5", level: 90 },
-      { name: "Vue.js", level: 75 },
-      { name: "Tailwind CSS", level: 80 },
-    ],
-  },
-  {
-    title: "Backend",
-    icon: (active: boolean) => (
-      <Server
-        className={` ${active ? "text-gray-300" : "text-green-400"}`}
-        size={24}
-      />
-    ),
-    color: "from-green-400 to-emerald-400",
-    skills: [
-      { name: "Node.js", level: 85 },
-      { name: "GraphQL", level: 75 },
-      { name: "REST APIs", level: 90 },
-      { name: "Java", level: 70 },
-    ],
-  },
-  {
-    title: "Database",
-    icon: (active: boolean) => (
-      <Database
-        className={` ${active ? "text-gray-300" : "text-purple-400"}`}
-        size={24}
-      />
-    ),
-    color: "from-purple-400 to-pink-400",
-    skills: [
-      { name: "MongoDB", level: 80 },
-      { name: "Redis", level: 75 },
-      { name: "SAP HANA", level: 90 },
-      { name: "MySQL", level: 80 },
-    ],
-  },
-  {
-    title: "DevOps & Tools",
-    icon: (active: boolean) => (
-      <Wrench
-        className={` ${active ? "text-gray-300" : "text-orange-400"}`}
-        size={24}
-      />
-    ),
-    color: "from-orange-400 to-red-400",
-    skills: [
-      { name: "Docker", level: 85 },
-      { name: "Github Actions", level: 75 },
-      { name: "Cloudflare", level: 80 },
-      { name: "Azure", level: 80 },
-      { name: "SAP HANA Cloud", level: 90 },
-    ],
-  },
-];
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState(0);
+  const t = useTranslations("skill");
+  const skillCategories = [
+    {
+      title: t("Frontend"),
+      icon: (active: boolean) => (
+        <Code
+          className={` ${active ? "text-gray-300" : "text-blue-400"}`}
+          size={24}
+        />
+      ),
+      color: "from-blue-400 to-cyan-400",
+      skills: [
+        { name: "TypeScript", level: 95 },
+        { name: "React", level: 90 },
+        { name: "Next.js", level: 85 },
+        { name: "SAP UI5", level: 90 },
+        { name: "Vue.js", level: 75 },
+        { name: "Tailwind CSS", level: 80 },
+      ],
+    },
+    {
+      title: t("Backend"),
+      icon: (active: boolean) => (
+        <Server
+          className={` ${active ? "text-gray-300" : "text-green-400"}`}
+          size={24}
+        />
+      ),
+      color: "from-green-400 to-emerald-400",
+      skills: [
+        { name: "Node.js", level: 85 },
+        { name: "GraphQL", level: 75 },
+        { name: "REST APIs", level: 90 },
+        { name: "Java", level: 70 },
+      ],
+    },
+    {
+      title: t("Database"),
+      icon: (active: boolean) => (
+        <Database
+          className={` ${active ? "text-gray-300" : "text-purple-400"}`}
+          size={24}
+        />
+      ),
+      color: "from-purple-400 to-pink-400",
+      skills: [
+        { name: "MongoDB", level: 80 },
+        { name: "Redis", level: 75 },
+        { name: "SAP HANA", level: 90 },
+        { name: "MySQL", level: 80 },
+      ],
+    },
+    {
+      title: t("DevOps"),
+      icon: (active: boolean) => (
+        <Wrench
+          className={` ${active ? "text-gray-300" : "text-orange-400"}`}
+          size={24}
+        />
+      ),
+      color: "from-orange-400 to-red-400",
+      skills: [
+        { name: "Docker", level: 85 },
+        { name: "Github Actions", level: 75 },
+        { name: "Cloudflare", level: 80 },
+        { name: "Azure", level: 80 },
+        { name: "SAP HANA Cloud", level: 90 },
+      ],
+    },
+  ];
 
   return (
     <section id="skills" className="bg-gray-900/50 py-20">
@@ -99,11 +100,11 @@ export default function Skills() {
         >
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-              Technical Skills
+              {t("title")}
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-xl text-gray-300">
-            Comprehensive expertise across the full technology stack
+            {t("description")}
           </p>
         </motion.div>
 
@@ -183,24 +184,26 @@ export default function Skills() {
           >
             <div className="flex flex-col items-center">
               <Cloud className="mb-2 text-blue-400" size={32} />
-              <h4 className="font-semibold text-white">Cloud Platforms</h4>
+              <h4 className="font-semibold text-white">
+                {t("Cloud Platforms")}
+              </h4>
               <p className="text-sm text-gray-400">
                 Cloudflare, Azure, SAP HANA Cloud
               </p>
             </div>
             <div className="flex flex-col items-center">
               <Smartphone className="mb-2 text-green-400" size={32} />
-              <h4 className="font-semibold text-white">Mobile</h4>
+              <h4 className="font-semibold text-white">{t("Mobile")}</h4>
               <p className="text-sm text-gray-400">React Native, PWA</p>
             </div>
             <div className="flex flex-col items-center">
               <Globe className="mb-2 text-purple-400" size={32} />
-              <h4 className="font-semibold text-white">Enterprise</h4>
+              <h4 className="font-semibold text-white">{t("Enterprise")}</h4>
               <p className="text-sm text-gray-400">SAP, ServiceNow</p>
             </div>
             <div className="flex flex-col items-center">
               <GitBranch className="mb-2 text-orange-400" size={32} />
-              <h4 className="font-semibold text-white">Methodologies</h4>
+              <h4 className="font-semibold text-white">{t("Methodologies")}</h4>
               <p className="text-sm text-gray-400">Agile, DevOps</p>
             </div>
           </motion.div>

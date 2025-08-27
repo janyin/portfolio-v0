@@ -11,6 +11,16 @@ const Config = {
     "full-stack developer",
     "web development",
   ],
+  languages: [
+    {
+      code: "en",
+      label: "English",
+    },
+    {
+      code: "zh",
+      label: "简体中文",
+    },
+  ],
 };
 
 export default Config;

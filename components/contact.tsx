@@ -9,12 +9,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Contact() {
   const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [isMessageSent, setIsMessageSent] = React.useState(false);
+  const t = useTranslations("contact");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,12 +59,11 @@ export default function Contact() {
         >
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">
             <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
-              Let&apos;s Connect
+              {t("Lets Connect")}
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-xl text-gray-300">
-            Ready to discuss opportunities, collaborations, or just have a tech
-            conversation
+            {t("description")}
           </p>
         </motion.div>
 
@@ -74,7 +75,9 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="mb-8 text-2xl font-bold text-white">Get In Touch</h3>
+            <h3 className="mb-8 text-2xl font-bold text-white">
+              {t("Get In Touch")}
+            </h3>
 
             <div className="mb-8 space-y-6">
               <div className="flex items-center space-x-4">
@@ -82,7 +85,7 @@ export default function Contact() {
                   <Mail className="text-white" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Email</h4>
+                  <h4 className="font-semibold text-white">{t("Email")}</h4>
                   <p className="text-gray-300">{Config.email}</p>
                 </div>
               </div>
@@ -102,15 +105,17 @@ export default function Contact() {
                   <MapPin className="text-white" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Location</h4>
-                  <p className="text-gray-300">China</p>
+                  <h4 className="font-semibold text-white">{t("Location")}</h4>
+                  <p className="text-gray-300">{t("China")}</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div>
-              <h4 className="mb-4 font-semibold text-white">Follow Me</h4>
+              <h4 className="mb-4 font-semibold text-white">
+                {t("Follow Me")}
+              </h4>
               <div className="flex space-x-4">
                 <motion.a
                   whileHover={{ scale: 1.1 }}
@@ -145,22 +150,24 @@ export default function Contact() {
               {isMessageSent ? (
                 <CardContent className="p-8">
                   <h3 className="mb-6 text-2xl font-bold text-white">
-                    Message Sent
+                    {t("Message Sent")}
                   </h3>
                   <p className="text-gray-300">
-                    Thank you for your message! I will get back to you soon.
+                    {t(
+                      "Thank you for your message! I will get back to you soon",
+                    )}
                   </p>
                 </CardContent>
               ) : (
                 <CardContent className="p-8">
                   <h3 className="mb-6 text-2xl font-bold text-white">
-                    Send a Message
+                    {t("Send a Message")}
                   </h3>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label className="mb-2 block text-sm font-medium text-gray-300">
-                        Your Email
+                        {t("Your Email")}
                       </label>
                       <Input
                         type="email"
@@ -173,7 +180,7 @@ export default function Contact() {
 
                     <div>
                       <label className="mb-2 block text-sm font-medium text-gray-300">
-                        Message
+                        {t("Message")}
                       </label>
                       <Textarea
                         required
@@ -190,7 +197,7 @@ export default function Contact() {
                       className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700"
                     >
                       <Send size={16} className="mr-2" />
-                      Send Message
+                      {t("Send Message")}
                     </Button>
                   </form>
                 </CardContent>

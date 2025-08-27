@@ -1,5 +1,7 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      </body>
       <GoogleAnalytics gaId="G-1TMT4C27BQ" />
     </html>
   );

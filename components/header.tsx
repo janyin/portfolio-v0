@@ -1,22 +1,33 @@
 "use client";
 
+import { setLocaleCookie } from "@/app/actions/setLocale";
 import Config from "@/app/config";
+import LanguageSelect from "@/components/language-select";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Download, Github, Languages, Linkedin, Mail } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { startTransition, useEffect, useState } from "react";
 
-const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
-];
+// const navItems = [
+//   { name: "Home", href: "#home" },
+//   { name: "Experience", href: "#experience" },
+//   { name: "Projects", href: "#projects" },
+//   { name: "Skills", href: "#skills" },
+//   { name: "Contact", href: "#contact" },
+// ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLangSelect, setShowLangSelect] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState("en");
+  const t = useTranslations();
+
+  useEffect(() => {
+    const lang = localStorage.getItem("language") || "en";
+    setCurrentLanguage(lang);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +70,7 @@ export default function Header() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center space-x-8 md:flex">
+          {/* <nav className="hidden items-center space-x-8 md:flex">
             {navItems.map((item) => (
               <motion.button
                 key={item.name}
@@ -71,7 +82,7 @@ export default function Header() {
                 {item.name}
               </motion.button>
             ))}
-          </nav>
+          </nav> */}
 
           {/* Social Links & Resume */}
           <div className="hidden items-center space-x-4 md:flex">
@@ -100,6 +111,26 @@ export default function Header() {
             >
               <Mail size={20} />
             </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              className="relative text-gray-400 transition-colors hover:text-white"
+              onClick={() => setShowLangSelect(!showLangSelect)}
+            >
+              <Languages size={20} />
+              {showLangSelect && (
+                <LanguageSelect
+                  onSelect={(lang) => {
+                    localStorage.setItem("language", lang);
+                    setCurrentLanguage(lang);
+                    setShowLangSelect(false);
+                    startTransition(() => {
+                      setLocaleCookie(lang);
+                    });
+                  }}
+                  currentLanguage={currentLanguage}
+                />
+              )}
+            </motion.a>
             <Button
               variant="outline"
               size="sm"
@@ -107,21 +138,21 @@ export default function Header() {
               className="border-blue-500 bg-transparent text-blue-400 hover:bg-blue-500 hover:text-white"
             >
               <Download size={16} className="mr-2" />
-              Resume
+              {t("resume")}
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          {/* <button
             className="text-white md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          </button> */}
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
+        {/* {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -173,7 +204,7 @@ export default function Header() {
               </div>
             </nav>
           </motion.div>
-        )}
+        )} */}
       </div>
     </motion.header>
   );
