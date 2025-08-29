@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 import { useIsMobile } from "../../hooks/use-mobile";
 
 // Mocking window.matchMedia if not available
