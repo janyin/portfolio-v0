@@ -45,10 +45,17 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
   const handleResumeDownload = () => {
-    window.open(
-      window.location.origin + "/pdf/Jiangdu-Liu-Resume.pdf",
-      "_blank",
-    );
+    if (currentLanguage === "zh") {
+      window.open(
+        window.location.origin + "/pdf/Jiangdu-Liu-Resume-zh.pdf",
+        "_blank",
+      );
+    } else {
+      window.open(
+        window.location.origin + "/pdf/Jiangdu-Liu-Resume.pdf",
+        "_blank",
+      );
+    }
   };
   return (
     <motion.header
@@ -111,7 +118,7 @@ export default function Header() {
             >
               <Mail size={20} />
             </motion.a>
-            <motion.a
+            <motion.span
               whileHover={{ scale: 1.1 }}
               className="relative text-gray-400 transition-colors hover:text-white"
               onClick={() => setShowLangSelect(!showLangSelect)}
@@ -130,7 +137,7 @@ export default function Header() {
                   currentLanguage={currentLanguage}
                 />
               )}
-            </motion.a>
+            </motion.span>
             <Button
               variant="outline"
               size="sm"
@@ -142,69 +149,28 @@ export default function Header() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          {/* <button
-            className="text-white md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          {/* Mobile Button */}
+          <motion.span
+            whileHover={{ scale: 1.1 }}
+            className="relative text-gray-400 transition-colors hover:text-white md:hidden"
+            onClick={() => setShowLangSelect(!showLangSelect)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button> */}
+            <Languages size={20} />
+            {showLangSelect && (
+              <LanguageSelect
+                onSelect={(lang) => {
+                  localStorage.setItem("language", lang);
+                  setCurrentLanguage(lang);
+                  setShowLangSelect(false);
+                  startTransition(() => {
+                    setLocaleCookie(lang);
+                  });
+                }}
+                currentLanguage={currentLanguage}
+              />
+            )}
+          </motion.span>
         </div>
-
-        {/* Mobile Menu */}
-        {/* {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-4 border-t border-gray-800 py-4 md:hidden"
-          >
-            <nav className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-left text-gray-300 transition-colors hover:text-white"
-                >
-                  {item.name}
-                </button>
-              ))}
-              <div className="flex items-center space-x-4 pt-4">
-                <a
-                  href={Config.social.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github
-                    size={20}
-                    className="text-gray-400 hover:text-white"
-                  />
-                </a>
-                <a
-                  href={Config.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin
-                    size={20}
-                    className="text-gray-400 hover:text-white"
-                  />
-                </a>
-                <a href={`mailto:${Config.email}`}>
-                  <Mail size={20} className="text-gray-400 hover:text-white" />
-                </a>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleResumeDownload}
-                  className="border-blue-500 bg-transparent text-blue-400"
-                >
-                  <Download size={16} className="mr-2" />
-                  Resume
-                </Button>
-              </div>
-            </nav>
-          </motion.div>
-        )} */}
       </div>
     </motion.header>
   );
