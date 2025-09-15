@@ -1,6 +1,6 @@
 # Portfolio Website
 
-This is a personal portfolio website built using React and Tailwind CSS. It showcases my projects, skills, and contact information.
+This is a personal portfolio website built using Next.js, React and Tailwind CSS. It showcases my projects, skills, and contact information.
 
 ## Features
 
