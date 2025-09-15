@@ -19,7 +19,6 @@ import { startTransition, useEffect, useState } from "react";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showLangSelect, setShowLangSelect] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState("en");
   const t = useTranslations();
@@ -37,13 +36,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMobileMenuOpen(false);
-  };
   const handleResumeDownload = () => {
     if (currentLanguage === "zh") {
       window.open(
