@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { SparklesCore } from "./aceternity/sparkles";
 
 interface Particle {
   x: number;
@@ -108,10 +109,16 @@ export default function ParticleBackground() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0"
-      style={{ background: "transparent" }}
-    />
+    <div className="fixed inset-0 z-0">
+      <SparklesCore
+        id="tsparticlesfullpage"
+        background="transparent"
+        minSize={0.6}
+        maxSize={1.4}
+        particleDensity={60}
+        className="h-full w-full"
+        particleColor="#22d3ee"
+      />
+    </div>
   );
 }

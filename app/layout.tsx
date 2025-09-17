@@ -2,6 +2,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 
+import ParticleBackground from "@/components/particle-background";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -66,8 +67,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className="bg-black">
+        <div className="relative min-h-screen overflow-x-hidden bg-black text-white">
+          <ParticleBackground />
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        </div>
       </body>
       <GoogleAnalytics gaId="G-1TMT4C27BQ" />
     </html>
