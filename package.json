@@ -22,7 +22,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "framer-motion": "latest",
     "jest-environment-jsdom": "^30.1.2",
-    "lucide-react": "^0.536.0",
+    "lucide-react": "^0.545.0",
     "motion": "^12.23.13",
     "next": "15.4.7",
     "next-intl": "^4.3.5",
