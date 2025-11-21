@@ -3,9 +3,8 @@
 import { setLocaleCookie } from "@/app/actions/setLocale";
 import Config from "@/app/config";
 import LanguageSelect from "@/components/language-select";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Download, Github, Languages, Linkedin, Mail } from "lucide-react";
+import { Github, Languages, Linkedin, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { startTransition, useEffect, useState } from "react";
 
@@ -130,7 +129,7 @@ export default function Header() {
                 />
               )}
             </motion.span>
-            <Button
+            {/* <Button
               variant="outline"
               size="sm"
               onClick={handleResumeDownload}
@@ -138,7 +137,7 @@ export default function Header() {
             >
               <Download size={16} className="mr-2" />
               {t("resume")}
-            </Button>
+            </Button> */}
           </div>
 
           {/* Mobile Button */}
