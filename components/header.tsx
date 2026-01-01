@@ -64,7 +64,7 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-2xl font-bold text-transparent"
           >
-            {"<Liucodes.Dev />"}
+            {"<LiucodesDev />"}
           </motion.div>
 
           {/* Desktop Navigation */}
